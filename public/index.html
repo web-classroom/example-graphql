@@ -12,7 +12,16 @@
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-            body: JSON.stringify({ query: "{ hello }" })
+            body: JSON.stringify({ query: `
+                {
+                    classroom(name: "test") {
+                        name,
+                        students { 
+                            age
+                        }
+                    }
+                }
+            ` })
         })
             .then(r => r.json())
             .then(data => document.getElementById("graphql").innerText = JSON.stringify(data));    
